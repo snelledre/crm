@@ -1,0 +1,97 @@
+#Maak directory
+mkdir crm_project
+
+#env
+python -m venv venv
+source venv
+venv/Scripts/activate
+venv\Scripts\activate
+
+#requirements
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+#upgrade pip
+python -m pip install --upgrade pip
+
+#install django
+pip install Django==3.2.10
+
+#New django project
+django-admin startproject crm .
+
+#postgress
+pip install psycopg2-binary
+
+#crispy-forms
+pip install django-crispy-forms
+
+#Create app
+python manage.py startapp accounts
+
+#abstract usermodel
+python manage.py startapp users
+python manage.py makemigrations users
+python manage.py migrate
+
+#migrate don't migrate firt when using custum user model
+python manage.py migrate
+
+#create superuser
+python manage.py createsuperuser    //snelledre  pp414026
+
+#run project
+python manage.py runserver
+
+#Create app
+python manage.py startapp pages
+python manage.py startapp accounts
+
+#make migration
+python manage.py makemigrations posts
+python manage.py migrate
+
+python manage.py collectstatic
+
+#settings
+'posts.apps.PostsConfig',
+'accounts.apps.AccountsConfig',
+'users.apps.UsersConfig',
+
+[os.path.join(BASE_DIR, 'templates')]
+
+#urls
+path('', include('posts.urls')),
+path('accounts/', include('accounts.urls')),
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+AUTH_USER_MODEL = 'users.CustomUser'
+
+� null is database-related. When a field has null=True it can store a database entry
+as NULL, meaning no value.
+� blank is validation-related, if blank=True then a form will allow an empty value,
+whereas if blank=False then a value is required
+
+but with a string you must use '' instead off null
+
+#reindent
+shift-alt-f
+
+#Git
+git init
+git status
+git add -A
+git commit -m 'initialcommit'
+git remote add origin https://snelledre@bitbucket.org/snelledre/pages.git  //pp414026
+git remote add origin https://snelledre@bitbucket.org/snelledre/blogs.git //Pp414026
+git remote add origin https://github.com/snelledre/tdapplication.git
+git remote add origin https://github.com/snelledre/crm.git
+git branch -M main
+git push -u origin main
+
+git push -u origin master
