@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "base.html" %}
+{% load tailwind_filters %}
 
-<body>
-    <a href="/leads">Go back to leads</a>
-    <hr />
+{% block content %}
+    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2" href="{% url 'leads:lead-list' %}">Go back to leads</a>
+    <hr class="mt-4 mb-3"/>
     <h1>Create a new lead</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
+        {{ form|crispy }}
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
     </form>
-</body>
-</html>
+{% endblock content %}
